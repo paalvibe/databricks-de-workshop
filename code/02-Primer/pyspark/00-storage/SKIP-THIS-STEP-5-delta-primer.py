@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Databricks Delta - primer
+# MAGIC # SKIP THIS NOTEBOOK Databricks Delta - primer
 # MAGIC
 # MAGIC ### What's in this exercise?
 # MAGIC In this exercise, we will complete the following in **batch** (streaming covered in the event hub primer):<br>

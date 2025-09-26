@@ -113,32 +113,14 @@ display(dbutils.fs.ls(dbfs_dest_dir_path_raw))
 # db name
 crime = dbname(db="crime")
 print("crime:" + repr(crime))
-spark.conf.set("nbvars.crime", crime)
 
 # chicago_crimes_raw table name
 chicago_crimes_raw = tblname(db="crime", tbl="chicago_crimes_raw")
 print("chicago_crimes_raw:" + repr(chicago_crimes_raw))
-spark.conf.set("nbvars.chicago_crimes_raw", chicago_crimes_raw)
 
 # chicago_crimes_curated table name
 chicago_crimes_curated = tblname(db="crime", tbl="chicago_crimes_curated")
 print("chicago_crimes_curated:" + repr(chicago_crimes_curated))
-spark.conf.set("nbvars.chicago_crimes_curated", chicago_crimes_curated)
-spark.conf.set("nbvars.dbfs_dest_dir_path_raw", dbfs_dest_dir_path_raw)
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC
-# MAGIC #### Coalesce data and view schema
-# MAGIC Coalesce reduces or increases amount of partitions to make write more efficient.
-# MAGIC We split into 8 partitions to better distribute writing.
-
-# COMMAND ----------
-
-coalesced = sourceDF.coalesce(8)
-# show schema with pyspark
-coalesced.schema
 
 # COMMAND ----------
 
@@ -147,7 +129,7 @@ coalesced.schema
 
 # COMMAND ----------
 
-coalesced.write.mode("overwrite").format("delta").saveAsTable(chicago_crimes_raw)
+sourceDF.write.mode("overwrite").format("delta").saveAsTable(chicago_crimes_raw)
 
 # COMMAND ----------
 
@@ -158,10 +140,8 @@ coalesced.write.mode("overwrite").format("delta").saveAsTable(chicago_crimes_raw
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC SELECT count(*) FROM ${nbvars.chicago_crimes_raw};
-# MAGIC
-# MAGIC --6,701,049
+spark.sql(f"SELECT count(*) FROM {chicago_crimes_raw}").display()
+# --6,701,049
 
 # COMMAND ----------
 
@@ -233,8 +213,7 @@ curated_df.write.mode("overwrite").format("delta").saveAsTable(chicago_crimes_cu
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC describe formatted ${nbvars.chicago_crimes_curated};
+spark.sql(f"describe formatted {chicago_crimes_curated}").display()
 
 # COMMAND ----------
 
@@ -243,9 +222,7 @@ curated_df.write.mode("overwrite").format("delta").saveAsTable(chicago_crimes_cu
 
 # COMMAND ----------
 
-# MAGIC %sql
-# MAGIC select * from ${nbvars.chicago_crimes_curated};
-# MAGIC --select count(*) as crime_count from ${nbvars.chicago_crimes_curated} --where primary_type='THEFT';
+spark.sql(f"select count(*) as crime_count from {chicago_crimes_curated} where primary_type='THEFT'").display()
 
 # COMMAND ----------
 
@@ -258,11 +235,18 @@ curated_df.write.mode("overwrite").format("delta").saveAsTable(chicago_crimes_cu
 
 # MAGIC %md
 # MAGIC #### Group by case_year in sql
+# MAGIC
+# MAGIC Ignore this warning: `SQL query contains $ parameter.`
+
+# COMMAND ----------
+
+dbutils.widgets.text("chicago_crimes_curated", chicago_crimes_curated)
+chicago_crimes_curated
 
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT case_year, count(*) AS crime_count FROM ${nbvars.chicago_crimes_curated}
+# MAGIC SELECT case_year, count(*) AS crime_count FROM ${chicago_crimes_curated}
 # MAGIC GROUP BY case_year ORDER BY case_year;
 
 # COMMAND ----------
@@ -284,7 +268,7 @@ display(grouped_by_year_df)
 
 # MAGIC %sql
 # MAGIC SELECT cast(cast(case_year as string) as date) as case_year, primary_type as case_type, count(*) AS crime_count
-# MAGIC FROM ${nbvars.chicago_crimes_curated}
+# MAGIC FROM ${chicago_crimes_curated}
 # MAGIC where primary_type in ('BATTERY','ASSAULT','CRIMINAL SEXUAL ASSAULT')
 # MAGIC GROUP BY case_year,primary_type ORDER BY case_year, case_type;
 
@@ -315,7 +299,7 @@ display(filtered_df)
 
 # MAGIC %sql
 # MAGIC select case_year,primary_type as case_type, count(*) as crimes_count
-# MAGIC from ${nbvars.chicago_crimes_curated}
+# MAGIC from ${chicago_crimes_curated}
 # MAGIC where (primary_type LIKE '%ASSAULT%' OR primary_type LIKE '%CHILD%')
 # MAGIC GROUP BY case_year, case_type
 # MAGIC ORDER BY case_year,case_type desc;
@@ -329,7 +313,7 @@ display(filtered_df)
 
 # MAGIC %sql
 # MAGIC select primary_type as case_type, count(*) as crimes_count
-# MAGIC from ${nbvars.chicago_crimes_curated}
+# MAGIC from ${chicago_crimes_curated}
 # MAGIC where (primary_type LIKE '%ASSAULT%' OR primary_type LIKE '%CHILD%') OR (primary_type='KIDNAPPING')
 # MAGIC GROUP BY case_type;
 

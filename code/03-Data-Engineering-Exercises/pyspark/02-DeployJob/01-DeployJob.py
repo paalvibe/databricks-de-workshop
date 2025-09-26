@@ -77,7 +77,7 @@ month_cnt_df.write.mode("overwrite").format("delta").saveAsTable(borough_month_t
 # MAGIC Source could also have been a git repo, but for simplicity we now refer this Notebook
 # MAGIC
 # MAGIC * Path: Find this notebook under Repo/username/....
-# MAGIC * Cluster: `UC Training Cluster`
+# MAGIC * Cluster: `Serverless`
 # MAGIC
 # MAGIC Press Create
 # MAGIC
