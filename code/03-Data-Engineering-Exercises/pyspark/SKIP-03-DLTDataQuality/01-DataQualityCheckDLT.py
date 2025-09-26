@@ -1,6 +1,6 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # Delta Live Table example
+# MAGIC # Delta Live Tables (Declarative Lakeflow Pipelines) example
 # MAGIC
 # MAGIC Delta Live Tables is managed compute DBT-like ETL framework.
 # MAGIC
@@ -12,7 +12,7 @@
 # MAGIC
 # MAGIC **DO NOT RUN HERE!**
 # MAGIC
-# MAGIC **Very important!** This notebook cannot be run manually. It can only run from Workflows.
+# MAGIC **Very important!** This notebook cannot be run manually. It can only run from Jobs.
 # MAGIC If you try to run here, you will get an error when trying to import dlt module.
 
 # COMMAND ----------
@@ -32,8 +32,8 @@ from pyspark.sql.functions import *
 # MAGIC
 # MAGIC How to deploy:
 # MAGIC
-# MAGIC 1. Go to `Delta Live Tables` Menu in the left bar.
-# MAGIC 2. Press `Create Pipeline`
+# MAGIC 1. Go to `Job and Pipelines` Menu in the left bar.
+# MAGIC 2. Press `Create -> ETL Pipeline`
 # MAGIC
 # MAGIC * Name: `donjohnson_trips_dq_dlt`, replace `donjohnson` with your name.
 # MAGIC * Product edition: `advanced`

@@ -129,48 +129,8 @@ trips_df.groupBy("pickup_borough").agg(
 # COMMAND ----------
 
 # MAGIC %md
-# MAGIC ### 7.  Average trip amount by pickup_borough
-# MAGIC
-# MAGIC Use `total_amount`.
-
-# COMMAND ----------
-
-
-
-# COMMAND ----------
-
-# MAGIC %md
 # MAGIC ### 8.  Count trips with no tip, by pickup_borough
 # MAGIC `tip_amount` is the tip column
-
-# COMMAND ----------
-
-
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ### 9. Count trips with no charge, by pickup_borough
-# MAGIC
-# MAGIC `Payment_type`
-# MAGIC
-# MAGIC A numeric code signifying how the passenger paid for the trip. Type values:
-# MAGIC
-# MAGIC 1. `Credit card`
-# MAGIC 2. `Cash`
-# MAGIC 3. `No charge`
-# MAGIC 4. `Dispute`
-# MAGIC 5. `Unknown`
-# MAGIC 6. `Voided trip`
-
-# COMMAND ----------
-
-
-
-# COMMAND ----------
-
-# MAGIC %md
-# MAGIC ### 10. Count trips by payment type
 
 # COMMAND ----------
 
