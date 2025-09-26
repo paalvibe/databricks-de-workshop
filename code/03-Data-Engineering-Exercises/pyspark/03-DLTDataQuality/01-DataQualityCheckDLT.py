@@ -36,21 +36,16 @@ from pyspark.sql.functions import *
 # MAGIC 2. Press `Create -> ETL Pipeline`
 # MAGIC
 # MAGIC * Name: `donjohnson_trips_dq_dlt`, replace `donjohnson` with your name.
-# MAGIC * Product edition: `advanced`
-# MAGIC * Notebook source: Find this notebook
-# MAGIC * Destination: Unity Catalog
-# MAGIC * Catalog: `training`
-# MAGIC * Schema / DB: None
-# MAGIC * Policy: `dlt-default-policy`
-# MAGIC * Cluster mode: `Enhanced autoscaling`
-# MAGIC * Min workers: 1
-# MAGIC * Max workers: 5
+# MAGIC * In the top left select the catalog `training`, and the schema `dev_[your username]_taxi_db`
+# MAGIC * Press Add existing assets
+# MAGIC * Pipeline root folder: select this folder
+# MAGIC * Notebook source: Find the trips_dlt.py file in this folder
 # MAGIC
 # MAGIC Press `Create`
 # MAGIC
-# MAGIC 3. Run the pipeline by pressing `Start` button
+# MAGIC 3. Run the pipeline by pressing `Run pipelines` button
 # MAGIC
-# MAGIC It can take a few minutes to start the pipeline, since we have not tuned the clusters.
+# MAGIC It can take a couple of minutes to run the pipeline
 # MAGIC
 # MAGIC 4. Observe the output to see the lineage between tables
 
@@ -59,7 +54,7 @@ from pyspark.sql.functions import *
 # MAGIC %md
 # MAGIC ## Observe failed records
 # MAGIC
-# MAGIC In the DLT run view, press the Curated data set and observe the expectations fail rate, 
+# MAGIC In the run view, press the Curated data set and observe the expectations fail rate, 
 # MAGIC which should be about 36%.
 
 # COMMAND ----------
@@ -70,29 +65,3 @@ from pyspark.sql.functions import *
 # MAGIC Run job again to ensure there are no failing expectations.
 # MAGIC
 # MAGIC Tip: use `fillna()` function with pickup_borough as subset arg.
-
-# COMMAND ----------
-
-@dlt.table(table_properties={"quality": "silver"})
-@dlt.expect_or_fail("pickup_borough_not_null", "pickup_borough IS NOT NULL")
-def curated():
-  return (
-    spark.table("training.taxinyc_trips.yellow_taxi_trips_curated")
-    .where(
-        # limit dataset to get faster processing
-        "trip_year = 2016 and trip_month == '02'"
-    )
-  )
-
-# COMMAND ----------
-
-@dlt.table(
-  comment="Trips by month and borough."
-)
-@dlt.expect_or_fail("pickup_borough_not_null", "pickup_borough IS NOT NULL")
-def trips_by_month_and_borough():
-  return (
-    dlt.read("curated")
-      .groupBy("pickup_borough", "trip_month")
-      .count()
-  )
