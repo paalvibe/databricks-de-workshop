@@ -11,11 +11,13 @@
 # MAGIC %md 
 # MAGIC ## Autocomplete code or queries
 # MAGIC
-# MAGIC You can use the Assistant from inside a notebook cell or query editor to suggest code snippets. Type a comment, and press control + shift + space (Windows) or option + shift + space (Mac) to trigger an autocomplete suggestion.
+# MAGIC You can use the Assistant from inside a notebook cell or query editor to suggest code snippets. Type a comment, and press control + I (Windows) or cmd + I (Mac) to write a suggestion.
+# MAGIC
+# MAGIC Example instruction: Write code to reverse a string. Then display the string.
 
 # COMMAND ----------
 
-# Write code to reverse a string. Then display the string.
+
 
 # COMMAND ----------
 
