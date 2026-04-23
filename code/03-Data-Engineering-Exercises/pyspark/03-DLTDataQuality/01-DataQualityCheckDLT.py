@@ -32,20 +32,20 @@ from pyspark.sql.functions import *
 # MAGIC
 # MAGIC How to deploy:
 # MAGIC
-# MAGIC 1. Go to `Job and Pipelines` Menu in the left bar.
+# MAGIC 1. Go to `Jobs and Pipelines` Menu in the left bar.
 # MAGIC 2. Press `Create -> ETL Pipeline`
 # MAGIC
 # MAGIC * Name: `donjohnson_trips_dq_dlt`, replace `donjohnson` with your name.
 # MAGIC * In the top left select the catalog `training`, and the schema `dev_[your username]_taxi_db`
 # MAGIC * Press Add existing assets
 # MAGIC * Pipeline root folder: select this folder
-# MAGIC * Notebook source: Find the trips_dlt.py file in this folder
+# MAGIC * Source code paths: Find the trips_dlt.py file in this folder
 # MAGIC
-# MAGIC Press `Create`
+# MAGIC Press `Add`
 # MAGIC
-# MAGIC 3. Run the pipeline by pressing `Run pipelines` button
+# MAGIC 3. Run the pipeline by pressing `Run pipeline` button
 # MAGIC
-# MAGIC It can take a couple of minutes to run the pipeline
+# MAGIC It can take a minute to run the pipeline
 # MAGIC
 # MAGIC 4. Observe the output to see the lineage between tables
 

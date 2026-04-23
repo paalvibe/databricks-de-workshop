@@ -246,7 +246,7 @@ chicago_crimes_curated
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC SELECT case_year, count(*) AS crime_count FROM ${chicago_crimes_curated}
+# MAGIC SELECT case_year, count(*) AS crime_count FROM IDENTIFIER(:chicago_crimes_curated)
 # MAGIC GROUP BY case_year ORDER BY case_year;
 
 # COMMAND ----------
@@ -268,7 +268,7 @@ display(grouped_by_year_df)
 
 # MAGIC %sql
 # MAGIC SELECT cast(cast(case_year as string) as date) as case_year, primary_type as case_type, count(*) AS crime_count
-# MAGIC FROM ${chicago_crimes_curated}
+# MAGIC FROM FROM IDENTIFIER(:chicago_crimes_curated)
 # MAGIC where primary_type in ('BATTERY','ASSAULT','CRIMINAL SEXUAL ASSAULT')
 # MAGIC GROUP BY case_year,primary_type ORDER BY case_year, case_type;
 
@@ -299,7 +299,7 @@ display(filtered_df)
 
 # MAGIC %sql
 # MAGIC select case_year,primary_type as case_type, count(*) as crimes_count
-# MAGIC from ${chicago_crimes_curated}
+# MAGIC from FROM IDENTIFIER(:chicago_crimes_curated)
 # MAGIC where (primary_type LIKE '%ASSAULT%' OR primary_type LIKE '%CHILD%')
 # MAGIC GROUP BY case_year, case_type
 # MAGIC ORDER BY case_year,case_type desc;
@@ -313,7 +313,7 @@ display(filtered_df)
 
 # MAGIC %sql
 # MAGIC select primary_type as case_type, count(*) as crimes_count
-# MAGIC from ${chicago_crimes_curated}
+# MAGIC from FROM IDENTIFIER(:chicago_crimes_curated)
 # MAGIC where (primary_type LIKE '%ASSAULT%' OR primary_type LIKE '%CHILD%') OR (primary_type='KIDNAPPING')
 # MAGIC GROUP BY case_type;
 
