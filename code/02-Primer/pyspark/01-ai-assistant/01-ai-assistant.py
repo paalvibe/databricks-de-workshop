@@ -4,14 +4,15 @@
 # MAGIC
 # MAGIC https://www.databricks.com/blog/introducing-databricks-assistant
 # MAGIC
-# MAGIC Databricks Assistant lets you query data through a conversational interface, making you more productive inside Databricks. Describe your task in English and let the Assistant generate SQL queries, explain complex code, and automatically fix errors. The Assistant leverages Unity Catalog metadata to understand your tables, columns, descriptions, and popular data assets across your company to provide responses that are personalized to you.
+# MAGIC ![primer](images/genie.png)
+# MAGIC The Databricks AI Assistant Genie Code lets you query data through a conversational interface, making you more productive inside Databricks. Describe your task in English and let the assistant generate SQL queries, explain complex code, and automatically fix errors. The Assistant leverages Unity Catalog metadata to understand your tables, columns, descriptions, and popular data assets across your company to provide responses that are personalized to you.
 
 # COMMAND ----------
 
 # MAGIC %md 
 # MAGIC ## Autocomplete code or queries
 # MAGIC
-# MAGIC You can use the Assistant from inside a notebook cell or query editor to suggest code snippets. Type a comment, and press control + I (Windows) or cmd + I (Mac) to write a suggestion.
+# MAGIC You can use the assistant from inside a notebook cell or query editor to suggest code snippets. Type a comment, and press control + I (Windows) or cmd + I (Mac) to write a suggestion.
 # MAGIC
 # MAGIC Example instruction: Write code to reverse a string. Then display the string.
 
@@ -23,7 +24,7 @@
 
 # MAGIC %md 
 # MAGIC ## Transform code
-# MAGIC The Assistant can also transform code from one language or framework to another, so you can always use the best language for the current task. For example, you can take pandas code and convert it into PySpark without needing to rewrite anything.
+# MAGIC The assistant can also transform code from one language or framework to another, so you can always use the best language for the current task. For example, you can take pandas code and convert it into PySpark without needing to rewrite anything.
 
 # COMMAND ----------
 
@@ -31,7 +32,7 @@
 # MAGIC
 # MAGIC ## Fix issues
 # MAGIC
-# MAGIC Databricks Assistant can identify errors in your code and recommend fixes. When you encounter issues like syntax errors, the Assistant will explain the problem and create a code snippet with a proposed fix.
+# MAGIC Databricks Genie Code can identify errors in your code and recommend fixes. When you encounter issues like syntax errors, the Assistant will explain the problem and create a code snippet with a proposed fix.
 # MAGIC
 # MAGIC Run the code below and press the Diagnos Error button.
 

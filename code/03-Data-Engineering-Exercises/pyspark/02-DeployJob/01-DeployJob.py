@@ -67,8 +67,9 @@ month_cnt_df.write.mode("overwrite").format("delta").saveAsTable(borough_month_t
 # MAGIC
 # MAGIC ## How to deploy this notebook a a job:
 # MAGIC
-# MAGIC 1. Go to Job Runs menu
-# MAGIC 2. Press create job
+# MAGIC 1. Go to Jobs & Pipelines menu
+# MAGIC 2. Press Create -> Job
+# MAGIC 3. Press "Notebook" and fill out the form as follows:
 # MAGIC
 # MAGIC * Task name: `donjohnson_report_trips_by_month_borough`, replace donjohnson with your name
 # MAGIC * Type: `Notebook`
@@ -79,7 +80,7 @@ month_cnt_df.write.mode("overwrite").format("delta").saveAsTable(borough_month_t
 # MAGIC * Path: Find this notebook under Repo/username/....
 # MAGIC * Cluster: `Serverless`
 # MAGIC
-# MAGIC Press Create
+# MAGIC Press Create Task
 # MAGIC
 # MAGIC 3. Run job
 # MAGIC
