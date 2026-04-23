@@ -1,15 +1,16 @@
 # Databricks notebook source
 # MAGIC %md
-# MAGIC # AI Assistant
+# MAGIC # AI Genie Code
 # MAGIC
-# MAGIC https://www.databricks.com/blog/introducing-databricks-assistant
+# MAGIC ![genie code](https://raw.githubusercontent.com/paalvibe/databricks-de-workshop/refs/heads/master/images/genie.png)
 # MAGIC
-# MAGIC ![primer](images/genie.png)
+# MAGIC https://www.databricks.com/product/genie-code
+# MAGIC
 # MAGIC The Databricks AI Assistant Genie Code lets you query data through a conversational interface, making you more productive inside Databricks. Describe your task in English and let the assistant generate SQL queries, explain complex code, and automatically fix errors. The Assistant leverages Unity Catalog metadata to understand your tables, columns, descriptions, and popular data assets across your company to provide responses that are personalized to you.
 
 # COMMAND ----------
 
-# MAGIC %md 
+# MAGIC %md
 # MAGIC ## Autocomplete code or queries
 # MAGIC
 # MAGIC You can use the assistant from inside a notebook cell or query editor to suggest code snippets. Type a comment, and press control + I (Windows) or cmd + I (Mac) to write a suggestion.
