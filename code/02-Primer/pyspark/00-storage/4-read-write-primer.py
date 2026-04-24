@@ -299,7 +299,7 @@ display(filtered_df)
 
 # MAGIC %sql
 # MAGIC select case_year,primary_type as case_type, count(*) as crimes_count
-# MAGIC from FROM IDENTIFIER(:chicago_crimes_curated)
+# MAGIC FROM IDENTIFIER(:chicago_crimes_curated)
 # MAGIC where (primary_type LIKE '%ASSAULT%' OR primary_type LIKE '%CHILD%')
 # MAGIC GROUP BY case_year, case_type
 # MAGIC ORDER BY case_year,case_type desc;
@@ -313,7 +313,7 @@ display(filtered_df)
 
 # MAGIC %sql
 # MAGIC select primary_type as case_type, count(*) as crimes_count
-# MAGIC from FROM IDENTIFIER(:chicago_crimes_curated)
+# MAGIC FROM IDENTIFIER(:chicago_crimes_curated)
 # MAGIC where (primary_type LIKE '%ASSAULT%' OR primary_type LIKE '%CHILD%') OR (primary_type='KIDNAPPING')
 # MAGIC GROUP BY case_type;
 

@@ -392,7 +392,7 @@ for j in range(2016,2018):
 # COMMAND ----------
 
 # MAGIC %sql
-# MAGIC select count(*) from from taxinyc_trips.yellow_taxi_trips_raw;
+# MAGIC select count(*) from taxinyc_trips.yellow_taxi_trips_raw;
 
 # COMMAND ----------
 
