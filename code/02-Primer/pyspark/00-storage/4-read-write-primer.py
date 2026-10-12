@@ -1,4 +1,11 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "6"
+# dependencies = [
+#   "plotly",
+# ]
+# ///
 # MAGIC %md
 # MAGIC # DBFS - read/write primer
 # MAGIC In this exercise, we will:<br>
@@ -268,7 +275,7 @@ display(grouped_by_year_df)
 
 # MAGIC %sql
 # MAGIC SELECT cast(cast(case_year as string) as date) as case_year, primary_type as case_type, count(*) AS crime_count
-# MAGIC FROM FROM IDENTIFIER(:chicago_crimes_curated)
+# MAGIC FROM IDENTIFIER(:chicago_crimes_curated)
 # MAGIC where primary_type in ('BATTERY','ASSAULT','CRIMINAL SEXUAL ASSAULT')
 # MAGIC GROUP BY case_year,primary_type ORDER BY case_year, case_type;
 
@@ -324,6 +331,11 @@ display(filtered_df)
 
 # COMMAND ----------
 
+# DBTITLE 1,Install plotly
+# MAGIC %pip install plotly
+
+# COMMAND ----------
+
 filtered_df = (
     curated_df.select(
         F.to_date(F.col("case_year").cast("string")).alias("case_year"),
@@ -369,6 +381,10 @@ display(filtered_df)
 
 # COMMAND ----------
 
+
+
+# COMMAND ----------
+
 from plotly.offline import plot
 from plotly.graph_objs import *
 import numpy as np
@@ -392,5 +408,4 @@ displayHTML(p)
 
 
 # COMMAND ----------
-
 

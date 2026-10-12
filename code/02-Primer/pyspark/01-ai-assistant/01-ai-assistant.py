@@ -74,4 +74,3 @@ check_email("an.email@domain.com.uk")
 
 # COMMAND ----------
 
-
